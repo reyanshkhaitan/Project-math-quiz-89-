@@ -18,7 +18,7 @@ document.getElementById("playerAnswerName").innerHTML = "Answer Turn - " + playe
 function send(){
     var number1 = document.getElementById("number1").value;
     var number2 = document.getElementById("number2").value;
-    var actual_answer = parseInt(number1) * parseInt(number2) ;
+    actual_answer = parseInt(number1) * parseInt(number2) ;
     var question_number = "<h4>" + number1 + " X " + number2 + "</h4>";
     var input_box = "<br> Answer : <input type = 'text' id = 'input_check_box'>" ; 
     var check_button = "<br><br> <button class = 'btn btn-info' onclick = 'check()'>Check</button>";
@@ -28,4 +28,40 @@ function send(){
     document.getElementById("number1").value = "";
     document.getElementById("number2").value = "";
 
+}
+
+questionTurn = "player1";
+answerTurn = "player2";
+
+function check(){
+    var get_answer = document.getElementById("input_check_box").value;
+    if(get_answer == actual_answer){
+        if(answerTurn == "player1"){
+            update_player1_score = player1_score + 1;
+            document.getElementById("player1_score").innerHTML = update_player1_score;
+        }
+        else{
+            update_player2_score = player2_score + 1;
+            document.getElementById("player2_score").innerHTML = update_player2_score;
+        }
+    }
+    if(questionTurn == "player1"){
+        questionTurn = "player2"
+        document.getElementById("playerQuestionName").innerHTML = "Question Turn - " + player2 ;
+    }
+    else{
+        questionTurn = "player1"
+        document.getElementById("playerQuestionName").innerHTML = "Question Turn - " + player1 ;
+    }
+
+
+    if(answerTurn == "player1"){
+        answerTurn = "player2"
+        document.getElementById("playerAnswerName").innerHTML = "Answer Turn - " + player2 ;
+    }
+    else{
+        answerTurn = "player1"
+        document.getElementById("playerAnswerName").innerHTML = "Answer Turn - " + player1 ;
+    }
+    document.getElementById("output").innerHTML = "";
 }
